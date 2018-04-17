@@ -1,0 +1,52 @@
+<%= form_with(model: contributor, local: true) do |form| %>
+  <% if contributor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contributor.errors.count, "error") %> prohibited this contributor from being saved:</h2>
+
+      <ul>
+      <% contributor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :code %>
+    <%= form.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :surname %>
+    <%= form.text_field :surname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :business_unit_id %>
+    <%= form.text_field :business_unit_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :workplace_id %>
+    <%= form.text_field :workplace_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :workroom_id %>
+    <%= form.text_field :workroom_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :building_id %>
+    <%= form.text_field :building_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

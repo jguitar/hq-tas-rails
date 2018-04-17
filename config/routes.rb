@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contributors
   resources :workplaces
   resources :workrooms
   resources :buildings

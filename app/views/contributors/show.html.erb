@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @contributor.code %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @contributor.first_name %>
+</p>
+
+<p>
+  <strong>Surname:</strong>
+  <%= @contributor.surname %>
+</p>
+
+<p>
+  <strong>Business unit:</strong>
+  <%= @contributor.business_unit %>
+</p>
+
+<p>
+  <strong>Workplace:</strong>
+  <%= @contributor.workplace %>
+</p>
+
+<p>
+  <strong>Workroom:</strong>
+  <%= @contributor.workroom %>
+</p>
+
+<p>
+  <strong>Building:</strong>
+  <%= @contributor.building %>
+</p>
+
+<%= link_to 'Edit', edit_contributor_path(@contributor) %> |
+<%= link_to 'Back', contributors_path %>
