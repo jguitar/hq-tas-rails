@@ -1,10 +1,11 @@
 class WorkroomsController < ApplicationController
+  before_action :set_floor, only: [:index]
   before_action :set_workroom, only: [:show, :edit, :update, :destroy]
 
   # GET /workrooms
   # GET /workrooms.json
   def index
-    @workrooms = Workroom.all
+    @workrooms = @floor.workrooms
   end
 
   # GET /workrooms/1
@@ -63,6 +64,10 @@ class WorkroomsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_floor
+      @floor = Floor.find(params[:floor_id])
+    end
+
     def set_workroom
       @workroom = Workroom.find(params[:id])
     end

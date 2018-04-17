@@ -1,10 +1,11 @@
 class BuildingsController < ApplicationController
+  before_action :set_site, only: [:index]
   before_action :set_building, only: [:show, :edit, :update, :destroy]
 
   # GET /buildings
   # GET /buildings.json
   def index
-    @buildings = Building.all
+    @buildings = @site.buildings
   end
 
   # GET /buildings/1
@@ -63,6 +64,10 @@ class BuildingsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_site
+      @site = Site.find(params[:site_id])
+    end
+
     def set_building
       @building = Building.find(params[:id])
     end
