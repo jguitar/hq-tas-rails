@@ -8,10 +8,14 @@
 
 require 'faker'
 
-def generate_next(index, code, site:, business_unit:, last_name:, first_name:, workroom:, city:)
+def generate_last_name
+  rand(100) > 80 ? Faker::Name.last_name : "#{Faker::Name.last_name} #{Faker::Name.last_name}"
+end
+
+def generate_next(index, code, site:, business_unit:, workroom:, city:)
   workplace_number = 500 + index
   workplace = Workplace.create!(code: "#{city.parameterize}-#{workplace_number}", name: "Puesto #{workplace_number}", workroom: workroom)
-  Contributor.create!(code: code, last_name: last_name, first_name: first_name, business_unit: business_unit, workplace: workplace, workroom: workroom, site: site)
+  Contributor.create!(code: code, last_name: generate_last_name, first_name: Faker::Name.first_name, business_unit: business_unit, workplace: workplace, workroom: workroom, site: site)
 end
 
 2.times do |i|
@@ -33,7 +37,7 @@ end
   starting_code = (rand(9) * 10_000) + (rand(9) * 1_000) + (rand(9) * 100) + (rand(9) * 10) + rand(9)
 
   rand(40..50).times do |i|
-    generate_next(i, starting_code + i, site: site, workroom: workroom_512, business_unit: business_unit, last_name: Faker::Name.last_name, first_name: Faker::Name.first_name, city: city)
+    generate_next(i, starting_code + i, site: site, workroom: workroom_512, business_unit: business_unit, city: city)
   end
 end
 
