@@ -5,7 +5,7 @@ class WorkroomsController < ApplicationController
   # GET /workrooms
   # GET /workrooms.json
   def index
-    @workrooms = @floor.workrooms
+    @workrooms = @floor ? @floor.workrooms : Workroom.all
   end
 
   # GET /workrooms/1
@@ -65,7 +65,7 @@ class WorkroomsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_floor
-      @floor = Floor.find(params[:floor_id])
+      @floor = Floor.find_by(id: params[:floor_id])
     end
 
     def set_workroom

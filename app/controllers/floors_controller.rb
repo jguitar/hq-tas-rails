@@ -5,7 +5,7 @@ class FloorsController < ApplicationController
   # GET /floors
   # GET /floors.json
   def index
-    @floors = @building.floors
+    @floors = @building ? @building.floors : Floor.all
   end
 
   # GET /floors/1
@@ -65,7 +65,7 @@ class FloorsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_building
-      @building = Building.find(params[:building_id])
+      @building = Building.find_by(id: params[:building_id])
     end
 
     def set_floor

@@ -5,7 +5,7 @@ class BuildingsController < ApplicationController
   # GET /buildings
   # GET /buildings.json
   def index
-    @buildings = @site.buildings
+    @buildings = @site ? @site.buildings : Building.all
   end
 
   # GET /buildings/1
@@ -65,7 +65,7 @@ class BuildingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_site
-      @site = Site.find(params[:site_id])
+      @site = Site.find_by(id: params[:site_id])
     end
 
     def set_building
