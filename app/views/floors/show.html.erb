@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @floor.code %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @floor.name %>
+</p>
+
+<p>
+  <strong>Building:</strong>
+  <%= @floor.building %>
+</p>
+
+<%= link_to 'Edit', edit_floor_path(@floor) %> |
+<%= link_to 'Back', floors_path %>
