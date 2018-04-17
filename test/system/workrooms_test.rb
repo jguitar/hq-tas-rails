@@ -14,7 +14,7 @@ class WorkroomsTest < ApplicationSystemTestCase
     visit workrooms_url
     click_on "New Workroom"
 
-    fill_in "Building", with: @workroom.building_id
+    fill_in "Floor", with: @workroom.floor_id
     fill_in "Code", with: @workroom.code
     fill_in "Name", with: @workroom.name
     click_on "Create Workroom"
@@ -27,7 +27,7 @@ class WorkroomsTest < ApplicationSystemTestCase
     visit workrooms_url
     click_on "Edit", match: :first
 
-    fill_in "Building", with: @workroom.building_id
+    fill_in "Floor", with: @workroom.floor_id
     fill_in "Code", with: @workroom.code
     fill_in "Name", with: @workroom.name
     click_on "Update Workroom"

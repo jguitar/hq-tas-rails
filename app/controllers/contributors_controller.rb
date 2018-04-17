@@ -69,6 +69,6 @@ class ContributorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contributor_params
-      params.require(:contributor).permit(:code, :first_name, :surname, :business_unit_id, :workplace_id, :workroom_id, :building_id)
+      params.require(:contributor).permit(:code, :first_name, :surname, :business_unit_id, :workplace_id, :workroom_id, :site_id)
     end
 end

@@ -17,7 +17,7 @@ class WorkroomsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create workroom" do
     assert_difference('Workroom.count') do
-      post workrooms_url, params: { workroom: { building_id: @workroom.building_id, code: @workroom.code, name: @workroom.name } }
+      post workrooms_url, params: { workroom: { floor_id: @workroom.floor_id, code: @workroom.code, name: @workroom.name } }
     end
 
     assert_redirected_to workroom_url(Workroom.last)
@@ -34,7 +34,7 @@ class WorkroomsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update workroom" do
-    patch workroom_url(@workroom), params: { workroom: { building_id: @workroom.building_id, code: @workroom.code, name: @workroom.name } }
+    patch workroom_url(@workroom), params: { workroom: { floor_id: @workroom.floor_id, code: @workroom.code, name: @workroom.name } }
     assert_redirected_to workroom_url(@workroom)
   end
 

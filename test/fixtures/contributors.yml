@@ -7,7 +7,7 @@ one:
   business_unit: one
   workplace: one
   workroom: one
-  building: one
+  site: one
 
 two:
   code: MyString
@@ -16,4 +16,4 @@ two:
   business_unit: two
   workplace: two
   workroom: two
-  building: two
+  site: two

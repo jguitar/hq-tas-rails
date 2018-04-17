@@ -69,6 +69,6 @@ class WorkroomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def workroom_params
-      params.require(:workroom).permit(:code, :name, :building_id)
+      params.require(:workroom).permit(:code, :name, :floor_id)
     end
 end

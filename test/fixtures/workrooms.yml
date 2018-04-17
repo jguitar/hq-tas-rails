@@ -3,9 +3,9 @@
 one:
   code: MyString
   name: MyString
-  building: one
+  floor: one
 
 two:
   code: MyString
   name: MyString
-  building: two
+  floor: two

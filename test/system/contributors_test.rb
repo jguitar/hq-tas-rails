@@ -14,10 +14,10 @@ class ContributorsTest < ApplicationSystemTestCase
     visit contributors_url
     click_on "New Contributor"
 
-    fill_in "Building", with: @contributor.building_id
-    fill_in "Business Unit", with: @contributor.business_unit_id
+    fill_in "Site", with: @contributor.site_id
+    fill_in "Business unit", with: @contributor.business_unit_id
     fill_in "Code", with: @contributor.code
-    fill_in "First Name", with: @contributor.first_name
+    fill_in "First name", with: @contributor.first_name
     fill_in "Surname", with: @contributor.surname
     fill_in "Workplace", with: @contributor.workplace_id
     fill_in "Workroom", with: @contributor.workroom_id
@@ -31,10 +31,10 @@ class ContributorsTest < ApplicationSystemTestCase
     visit contributors_url
     click_on "Edit", match: :first
 
-    fill_in "Building", with: @contributor.building_id
-    fill_in "Business Unit", with: @contributor.business_unit_id
+    fill_in "Site", with: @contributor.site_id
+    fill_in "Business unit", with: @contributor.business_unit_id
     fill_in "Code", with: @contributor.code
-    fill_in "First Name", with: @contributor.first_name
+    fill_in "First name", with: @contributor.first_name
     fill_in "Surname", with: @contributor.surname
     fill_in "Workplace", with: @contributor.workplace_id
     fill_in "Workroom", with: @contributor.workroom_id

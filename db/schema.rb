@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_17_094259) do
+ActiveRecord::Schema.define(version: 2018_04_17_095354) do
 
   create_table "buildings", force: :cascade do |t|
     t.string "code"
@@ -35,13 +35,22 @@ ActiveRecord::Schema.define(version: 2018_04_17_094259) do
     t.integer "business_unit_id"
     t.integer "workplace_id"
     t.integer "workroom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "site_id"
+    t.index ["business_unit_id"], name: "index_contributors_on_business_unit_id"
+    t.index ["site_id"], name: "index_contributors_on_site_id"
+    t.index ["workplace_id"], name: "index_contributors_on_workplace_id"
+    t.index ["workroom_id"], name: "index_contributors_on_workroom_id"
+  end
+
+  create_table "floors", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
     t.integer "building_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["building_id"], name: "index_contributors_on_building_id"
-    t.index ["business_unit_id"], name: "index_contributors_on_business_unit_id"
-    t.index ["workplace_id"], name: "index_contributors_on_workplace_id"
-    t.index ["workroom_id"], name: "index_contributors_on_workroom_id"
+    t.index ["building_id"], name: "index_floors_on_building_id"
   end
 
   create_table "sites", force: :cascade do |t|
@@ -63,10 +72,10 @@ ActiveRecord::Schema.define(version: 2018_04_17_094259) do
   create_table "workrooms", force: :cascade do |t|
     t.string "code"
     t.string "name"
-    t.integer "building_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["building_id"], name: "index_workrooms_on_building_id"
+    t.integer "floor_id"
+    t.index ["floor_id"], name: "index_workrooms_on_floor_id"
   end
 
 end

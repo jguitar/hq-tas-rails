@@ -1,3 +1,3 @@
 class Workroom < ApplicationRecord
-  belongs_to :building
+  belongs_to :floor
 end
