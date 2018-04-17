@@ -18,7 +18,7 @@ class ContributorsTest < ApplicationSystemTestCase
     fill_in "Business unit", with: @contributor.business_unit_id
     fill_in "Code", with: @contributor.code
     fill_in "First name", with: @contributor.first_name
-    fill_in "Surname", with: @contributor.surname
+    fill_in "Last name", with: @contributor.last_name
     fill_in "Workplace", with: @contributor.workplace_id
     fill_in "Workroom", with: @contributor.workroom_id
     click_on "Create Contributor"
@@ -35,7 +35,7 @@ class ContributorsTest < ApplicationSystemTestCase
     fill_in "Business unit", with: @contributor.business_unit_id
     fill_in "Code", with: @contributor.code
     fill_in "First name", with: @contributor.first_name
-    fill_in "Surname", with: @contributor.surname
+    fill_in "Last name", with: @contributor.last_name
     fill_in "Workplace", with: @contributor.workplace_id
     fill_in "Workroom", with: @contributor.workroom_id
     click_on "Update Contributor"

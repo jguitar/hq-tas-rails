@@ -5,6 +5,6 @@ class Contributor < ApplicationRecord
   belongs_to :workplace
 
   def to_s
-    "#{surname.upcase} #{first_name}"
+    "#{last_name.upcase} #{first_name}"
   end
 end

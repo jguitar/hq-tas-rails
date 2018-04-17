@@ -3,7 +3,7 @@
 one:
   code: MyString
   first_name: MyString
-  surname: MyString
+  last_name: MyString
   business_unit: one
   workplace: one
   workroom: one
@@ -12,7 +12,7 @@ one:
 two:
   code: MyString
   first_name: MyString
-  surname: MyString
+  last_name: MyString
   business_unit: two
   workplace: two
   workroom: two

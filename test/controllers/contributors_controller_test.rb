@@ -17,7 +17,7 @@ class ContributorsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create contributor" do
     assert_difference('Contributor.count') do
-      post contributors_url, params: { contributor: { site_id: @contributor.site_id, business_unit_id: @contributor.business_unit_id, code: @contributor.code, first_name: @contributor.first_name, surname: @contributor.surname, workplace_id: @contributor.workplace_id, workroom_id: @contributor.workroom_id } }
+      post contributors_url, params: { contributor: { site_id: @contributor.site_id, business_unit_id: @contributor.business_unit_id, code: @contributor.code, first_name: @contributor.first_name, last_name: @contributor.last_name, workplace_id: @contributor.workplace_id, workroom_id: @contributor.workroom_id } }
     end
 
     assert_redirected_to contributor_url(Contributor.last)
@@ -34,7 +34,7 @@ class ContributorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update contributor" do
-    patch contributor_url(@contributor), params: { contributor: { site_id: @contributor.site_id, business_unit_id: @contributor.business_unit_id, code: @contributor.code, first_name: @contributor.first_name, surname: @contributor.surname, workplace_id: @contributor.workplace_id, workroom_id: @contributor.workroom_id } }
+    patch contributor_url(@contributor), params: { contributor: { site_id: @contributor.site_id, business_unit_id: @contributor.business_unit_id, code: @contributor.code, first_name: @contributor.first_name, last_name: @contributor.last_name, workplace_id: @contributor.workplace_id, workroom_id: @contributor.workroom_id } }
     assert_redirected_to contributor_url(@contributor)
   end
 
