@@ -12,32 +12,29 @@ def generate_last_name
   rand(100) > 80 ? Faker::Name.last_name : "#{Faker::Name.last_name} #{Faker::Name.last_name}"
 end
 
-def generate_next(index, code, site:, business_unit:, workroom:, city:)
-  workplace_number = 500 + index
-  workplace = Workplace.create!(code: "#{city.parameterize}-#{workplace_number}", name: "Puesto #{workplace_number}", workroom: workroom)
-  Contributor.create!(code: code, last_name: generate_last_name, first_name: Faker::Name.first_name, business_unit: business_unit, workplace: workplace, workroom: workroom, site: site)
-end
+starting_code = (rand(9) * 10_000) + (rand(9) * 1_000) + (rand(9) * 100) + (rand(9) * 10) + rand(9)
 
 2.times do |i|
   city = Faker::GameOfThrones.city
 
+  business_unit = BusinessUnit.create!(code: "#{i}912", name: "NEGOCIO #{i}")
   site = Site.create!(code: city.parameterize, name: city)
-  building = Building.create!(code: "#{city.parameterize}-a", name: "#{city} A", site: site)
+  building = Building.create!(code: "#{site.code}A", name: "#{city} A", site: site)
 
   floors = [2, 3, 5, 8, 9]
   floors.each do |floor|
-    Floor.create!(code: "#{city.parameterize}-#{floor}", name: "#{floor}a planta", building: building)
-  end
-  floor_5 = Floor.find_by!(code: "#{city.parameterize}-5")
+    floor = Floor.create!(code: "#{building.code}#{floor}", name: "#{floor}a planta", building: building)
 
-  workroom_512 = Workroom.create!(code: "#{city.parameterize}-512", name: "DSC#{i}", floor: floor_5)
+    rand(10).times do |workroom_id|
+      workroom = Workroom.create!(code: "#{floor.code}#{workroom_id}", name: "DSC#{workroom_id}", floor: floor)
 
-  business_unit = BusinessUnit.create!(code: "#{i}912", name: "NEGOCIO #{i}")
-
-  starting_code = (rand(9) * 10_000) + (rand(9) * 1_000) + (rand(9) * 100) + (rand(9) * 10) + rand(9)
-
-  rand(40..50).times do |i|
-    generate_next(i, starting_code + i, site: site, workroom: workroom_512, business_unit: business_unit, city: city)
+      rand(10..50).times do |index|
+        code = starting_code + index
+        workplace_number = 500 + index
+        workplace = Workplace.create!(code: "#{workroom.code}#{index}", name: "Puesto #{workplace_number}", workroom: workroom)
+        Contributor.create!(code: code, last_name: generate_last_name, first_name: Faker::Name.first_name, business_unit: business_unit, workplace: workplace, workroom: workroom, site: site)
+      end
+    end
   end
 end
 
