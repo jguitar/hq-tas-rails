@@ -12,10 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2018_04_17_154937) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "buildings", force: :cascade do |t|
     t.string "code"
     t.string "name"
-    t.integer "site_id"
+    t.bigint "site_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["site_id"], name: "index_buildings_on_site_id"
@@ -32,12 +35,12 @@ ActiveRecord::Schema.define(version: 2018_04_17_154937) do
     t.string "code"
     t.string "first_name"
     t.string "last_name"
-    t.integer "business_unit_id"
-    t.integer "workplace_id"
-    t.integer "workroom_id"
+    t.bigint "business_unit_id"
+    t.bigint "workplace_id"
+    t.bigint "workroom_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "site_id"
+    t.bigint "site_id"
     t.index ["business_unit_id"], name: "index_contributors_on_business_unit_id"
     t.index ["site_id"], name: "index_contributors_on_site_id"
     t.index ["workplace_id"], name: "index_contributors_on_workplace_id"
@@ -47,7 +50,7 @@ ActiveRecord::Schema.define(version: 2018_04_17_154937) do
   create_table "floors", force: :cascade do |t|
     t.string "code"
     t.string "name"
-    t.integer "building_id"
+    t.bigint "building_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["building_id"], name: "index_floors_on_building_id"
@@ -63,7 +66,7 @@ ActiveRecord::Schema.define(version: 2018_04_17_154937) do
   create_table "workplaces", force: :cascade do |t|
     t.string "code"
     t.string "name"
-    t.integer "workroom_id"
+    t.bigint "workroom_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["workroom_id"], name: "index_workplaces_on_workroom_id"
@@ -74,8 +77,16 @@ ActiveRecord::Schema.define(version: 2018_04_17_154937) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "floor_id"
+    t.bigint "floor_id"
     t.index ["floor_id"], name: "index_workrooms_on_floor_id"
   end
 
+  add_foreign_key "buildings", "sites"
+  add_foreign_key "contributors", "business_units"
+  add_foreign_key "contributors", "sites"
+  add_foreign_key "contributors", "workplaces"
+  add_foreign_key "contributors", "workrooms"
+  add_foreign_key "floors", "buildings"
+  add_foreign_key "workplaces", "workrooms"
+  add_foreign_key "workrooms", "floors"
 end
