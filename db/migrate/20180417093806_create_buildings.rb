@@ -3,7 +3,7 @@ class CreateBuildings < ActiveRecord::Migration[5.2]
     create_table :buildings do |t|
       t.string :code
       t.string :name
-      t.references :site, foreign_key: true
+      t.references :site, foreign_key: false
 
       t.timestamps
     end
