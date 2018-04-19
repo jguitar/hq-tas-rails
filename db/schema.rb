@@ -81,12 +81,4 @@ ActiveRecord::Schema.define(version: 2018_04_17_154937) do
     t.index ["floor_id"], name: "index_workrooms_on_floor_id"
   end
 
-  add_foreign_key "buildings", "sites"
-  add_foreign_key "contributors", "business_units"
-  add_foreign_key "contributors", "sites"
-  add_foreign_key "contributors", "workplaces"
-  add_foreign_key "contributors", "workrooms"
-  add_foreign_key "floors", "buildings"
-  add_foreign_key "workplaces", "workrooms"
-  add_foreign_key "workrooms", "floors"
 end
