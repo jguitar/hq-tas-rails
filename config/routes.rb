@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   resources :workplaces
   resources :workrooms
   resources :buildings
-  resources :sites
+  resources :sites do
+    member do
+      get :full
+    end
+  end
   resources :business_units
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
