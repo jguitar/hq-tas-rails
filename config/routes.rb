@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :floors
-  resources :contributors
+  resources :contributors do
+    collection do
+      get :unassigned
+    end
+  end
   resources :workplaces
   resources :workrooms
   resources :buildings

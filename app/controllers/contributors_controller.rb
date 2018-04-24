@@ -4,7 +4,7 @@ class ContributorsController < ApplicationController
   # GET /contributors
   # GET /contributors.json
   def index
-    @contributors = Contributor.all
+    @contributors = get_contributors
   end
 
   # GET /contributors/1
@@ -61,6 +61,12 @@ class ContributorsController < ApplicationController
     end
   end
 
+
+  def unassigned
+    @contributors = get_contributors.unassigned
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contributor
@@ -70,5 +76,11 @@ class ContributorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def contributor_params
       params.require(:contributor).permit(:code, :first_name, :last_name, :business_unit_id, :workplace_id, :workroom_id, :site_id)
+    end
+
+    def get_contributors
+      contributors = Contributor.includes(:business_unit, :site, :workplace, workroom: [:floor])
+      contributors = contributors.where(site_id: params[:site_id]) if params[:site_id]
+      contributors
     end
 end
