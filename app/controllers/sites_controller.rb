@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  before_action :set_site, only: [:show, :edit, :update, :destroy]
+  before_action :set_site, only: [:show, :edit, :update, :destroy, :full]
 
   # GET /sites
   # GET /sites.json
@@ -59,6 +59,9 @@ class SitesController < ApplicationController
       format.html { redirect_to sites_url, notice: 'Site was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def full
   end
 
   private
