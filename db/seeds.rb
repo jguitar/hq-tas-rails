@@ -13,41 +13,15 @@ def generate_last_name
 end
 
 def create_business_units
-  business_units = {
-    "051": "DSI SI Sopra",
-    "052": "DSI Infraestructura",
-    "054": "DSI SI Steria",
-    "341": "CS Espagne",
-    "824": "Maintenance Spain",
-    "900": "DG-Juridico-Logistica",
-    "901": "Direccion Industrializacion",
-    "905": "DRH",
-    "906": "MKT-COM",
-    "907": "DAF",
-    "910": "Centre de Compétences SAB - BI",
-    "911": "Gestion de Infraestructuras",
-    "912": "Seguros",
-    "930": "Banca Estructura",
-    "933": "Banca 1",
-    "934": "Banca 2",
-    "935": "Banca 3",
-    "936": "Banca Consulting",
-    "943": "Telco-Energía-Transporte",
-    "944": "Aeroline",
-    "945": "Administración Pública",
-    "946": "Retail",
-    "947": "Estructura AAPP",
-    "951": "Cataluña IS",
-    "952": "Cataluña Consulting",
-    "961": "Norte",
-    "962": "Levante",
-    "963": "Sur",
-    "964": "Estructura Territorios",
-    "970": "Otros Negocios"
-  }
-
-  business_units.each do |key, value|
-    BusinessUnit.create!(code: key, name: value)
+  business_units = 30.times.map do
+    ([0, 3, 8, 9].sample * 100) + ([0, 1, 3, 5, 6].sample * 10) + rand(1..10)
+  end
+  business_units.uniq!
+  business_units.sort!
+  business_units.map! { |i| i.to_s.rjust(3, '0') }
+  business_units.each do |code|
+    name = Faker::GameOfThrones.house
+    BusinessUnit.create!(code: code, name: name)
   end
 end
 
