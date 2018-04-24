@@ -3,6 +3,6 @@ class Workroom < ApplicationRecord
   has_many :workplaces
 
   def to_s
-    "#{code} - #{name}"
+    code
   end
 end
