@@ -3,6 +3,6 @@ class Workplace < ApplicationRecord
   has_one :contributor
 
   def to_s
-    "#{code} - #{name}"
+    code
   end
 end
