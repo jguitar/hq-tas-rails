@@ -48,15 +48,16 @@ create_business_units
   business_units = BusinessUnit.all
   site = Site.create!(code: city.parameterize, name: city)
   rand(1..2).times do
-    building = Building.create!(code: "#{site.code}#{letter}".upcase, name: "#{city} #{letter}", site: site)
+    building = Building.create!(code: "#{site.code}#{letter}".upcase, name: "Edificio #{letter}", site: site)
 
     max_floor = rand(1..10)
     floors = (1..max_floor).to_a.sample(rand(max_floor)).sort
-    floors.each do |floor|
-      floor = Floor.create!(code: "#{building.code}#{floor}", name: "#{floor}a planta", building: building)
+    floors.each do |floor_id|
+      floor = Floor.create!(code: "#{floor_id}", name: "#{floor_id}a planta", building: building)
 
       rand(1..10).times do |workroom_id|
-        new_workroom = Workroom.create!(code: "#{floor.code}#{workroom_id}", name: "DSC#{workroom_id}", floor: floor)
+        workroom_id_formatted = (floor_id * 100) + workroom_id
+        new_workroom = Workroom.create!(code: workroom_id_formatted, name: "Sala #{workroom_id_formatted}", floor: floor)
 
         rand(5..30).times do |index|
           code = starting_code + index
