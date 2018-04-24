@@ -51,9 +51,21 @@ def create_business_units
   end
 end
 
+def clean_database
+  Contributor.delete_all
+  BusinessUnit.delete_all
+
+  Workplace.delete_all
+  Workroom.delete_all
+  Floor.delete_all
+  Building.delete_all
+  Site.delete_all
+end
+
 starting_code = (rand(9) * 10_000) + (rand(9) * 1_000) + (rand(9) * 100) + (rand(9) * 10) + rand(9)
 
 puts "Seeding..."
+clean_database
 create_business_units
 2.times do |i|
   city = Faker::GameOfThrones.city
