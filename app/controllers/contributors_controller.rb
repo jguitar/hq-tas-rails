@@ -63,7 +63,7 @@ class ContributorsController < ApplicationController
 
 
   def unassigned
-    @contributors = get_contributors.unassigned
+    @contributors = get_contributors.unassigned.order('workroom_id IS NOT NULL, workroom_id ASC')
     render :index
   end
 

@@ -10,3 +10,10 @@ script:
   - bundle exec rails test
 services:
   - postgresql
+deploy:
+  provider: heroku
+  api_key:
+    secure: QN8kXvQnxz9tEgrizP/+Wn5rs+xy0BKZcfGAk0xQHymOiZgZ2cU+SMG6ttPp6W2v7GUltJ3kzHPOdocoK7dLBrIgbFugfz2UC85KStLNVfV4k9Ug4kKEvY29LZ81xYFn+JGPt0zdz38rv5lrcWIBr8l6/7woG9nPE3Igo6FeHlzLB3QmEf9QrnYT0yibFcjqHRbYvn/AxMuTo8cvgOCRdU8XG16rnFQUxwmPRayAm0NlJVTOLEX67hZpHl8QqiGC9lebYpWBFBMfZqc23nrDpwaIq37lb1Tg3t0ePLqwz0pscEs5xswiHWOc1YSyIvnejinmy2bUrETXU0J2czslfxk4SAyGNrHDfq2Nig6mtwXH+RjA7Olgd0aBl8g8G5YGAdUKxs0l96zOpDb/Ud91ZP0dtSRpWGh426fqMWgAWFnqgtkaU6lGNh142JRDD44+j7ZP5Fj3FICOrI9fk1yN2W5Iv38jV3C4SDs9o7hZS5C2TYvfx7080hCgiq5Acbi3LLNyixYCWOJotbZC2gJPZHvK8jsH8m7BvnZyxJHC9aYayDZZpmgLObVy/POsYDHKBOlGoP3osKTpGus/OrDlJ01eSSfBBWyWWzE9SjO/U0Pr17XYpzJxStTsZlJ4Yz4EYtMIvI5cvnJ1UgsYwMadtGL+/b+M9jh4zYNaN5HHjzo=
+  on: master
+  run:
+    - "rails db:migrate"
