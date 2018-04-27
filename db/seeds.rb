@@ -41,13 +41,13 @@ starting_code = (rand(9) * 10_000) + (rand(9) * 1_000) + (rand(9) * 100) + (rand
 puts "Seeding..."
 clean_database
 create_business_units
-2.times do |i|
+2.times do
   city = Faker::GameOfThrones.city
-  letter = ('A'..'Z').to_a[i]
 
   business_units = BusinessUnit.all
   site = Site.create!(code: city.parameterize, name: city)
-  rand(1..2).times do
+  rand(1..2).times do |i|
+    letter = ('A'..'Z').to_a[i]
     building = Building.create!(code: "#{site.code}#{letter}".upcase, name: "Edificio #{letter}", site: site)
 
     max_floor = rand(1..10)
@@ -71,12 +71,14 @@ create_business_units
             workroom = new_workroom
           else
             workroom = new_workroom
-            workplace_number = 500 + index
-            workplace = Workplace.create!(code: "#{workroom.code}#{index}", name: "Puesto #{workplace_number}", workroom: workroom)
+            workplace_number = "#{workroom.code}#{index.to_s.rjust(2, '0')}".to_i
+            workplace = Workplace.create!(code: workplace_number, name: "Puesto #{workplace_number}", workroom: workroom)
           end
 
-          business_unit = business_units.sample
-          Contributor.create!(code: code, last_name: generate_last_name, first_name: Faker::Name.first_name, business_unit: business_unit, workplace: workplace, workroom: workroom, site: site)
+          if occupation_probability > 10
+            business_unit = business_units.sample
+            Contributor.create!(code: code, last_name: generate_last_name, first_name: Faker::Name.first_name, business_unit: business_unit, workplace: workplace, workroom: workroom, site: site)
+          end
         end
       end
     end
